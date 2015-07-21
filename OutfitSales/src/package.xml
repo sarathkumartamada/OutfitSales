@@ -16,6 +16,7 @@
     <types>
         <members>OutfitLoginPage</members>
         <members>OutfitSignupPage</members>
+        <members>OutfitTestPage</members>
         <name>ApexPage</name>
     </types>
     <types>
