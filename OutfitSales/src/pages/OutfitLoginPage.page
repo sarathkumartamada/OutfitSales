@@ -1,0 +1,39 @@
+<apex:page sidebar="true" controller="OutfitListWithTabcontroller" >
+    <head>
+        <!-- Bootstrap -->
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    </head>
+    <apex:form >
+         <apex:pageblock >
+              <div class="panel panel-info">
+              <div class="panel-heading" align="left"> <h3> Login Page </h3> </div>
+                  <apex:pageBlockSection >
+                     <div>
+                         <table  cellspacing="20" >
+                            <tr>
+                               <td><label for="username"> Username: </label></td>
+                               <td><apex:inputtext value="{!username}" styleClass="form-control"/></td>
+                            </tr>
+                            <tr>    
+                               <td><label for="password">Password:</label> </td>
+                               <td><apex:inputsecret value="{!password}" styleClass="form-control"/> </td>
+                            </tr>
+                         </table>
+                     </div>
+                  </apex:pageBlockSection>
+              </div>
+              <apex:pageblockButtons location="bottom" >              
+                    <apex:commandbutton value="Signin" styleClass="btn btn-success" action="{!Signin}"/>
+                    
+              </apex:pageblockButtons> 
+              
+              
+              <apex:pageblockButtons location="bottom" >
+              You are a new user please click on <apex:commandbutton value="Signup" styleClass="btn btn-success" action="{!Signup}"/>
+              </apex:pageblockButtons>
+              
+              
+              </apex:pageblock>
+     </apex:form>
+</apex:page>

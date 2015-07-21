@@ -1,0 +1,63 @@
+<apex:page controller="SignUpAccountController">
+    <head>
+         <!-- Bootstrap -->
+          <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+          <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+          <script type="text/javascript">
+
+            function Submit()
+            {
+                if(document.getElementById('{!$Component.form.pageBlock.pageBlockSection.Name}').value == '')
+                {
+                    alert("Account name is mandatory");
+                }
+                if(document.getElementById('{!$Component.form.pageBlock.pageBlockSection.Username}').value == '')
+                {
+                    alert("Email id is mandatory");
+                }
+                if(document.getElementById('{!$Component.form.pageBlock.pageBlockSection.Password}').value == '')
+                {
+                    alert("Password is mandatory");
+                }
+                if(document.getElementById('{!$Component.form.pageBlock.pageBlockSection.Phone}').value == '')
+                {
+                    alert("Phone is mandatory");
+                }
+                else
+                {
+                    callSubmit();
+                    alert("Account has been inserted");
+                }
+            }
+           
+        </script>
+            
+        </head>
+    <apex:form id="form">
+        <apex:pageBlock id="pageBlock">
+             
+               <apex:pageBlockSection columns="1" title="SignUpPage" id="pageBlockSection">  
+                   <table align="left">
+                                                           
+                     <tr><td> <apex:inputtext id="Name" value="{!Name}" styleClass="form-control" label="Name" /> </td></tr>
+                     <tr><td> <apex:inputtext id="Username" value="{!Email}" styleClass="form-control" label="Email" /> </td></tr>
+                     <tr><td> <apex:inputSecret id="Password" value="{!Password}" label="Password" styleClass="form-control" /></td> </tr>
+                     <tr><td> <apex:inputtext id="Phone" value="{!Phone}" styleClass="form-control" label="Phone"/> </td></tr>
+                  
+                  </table>         
+                                                           
+               </apex:pageBlockSection> 
+               
+               <apex:pageblockButtons >
+                    <apex:commandbutton value="Submit" styleClass="btn btn-success" action="{!Save}" onclick="Submit()"  />
+                    <apex:commandbutton value="Cancel" styleClass="btn btn-success" action="{!Cancel}"/>
+               </apex:pageblockButtons>  
+        
+        </apex:pageBlock>
+    
+    
+    </apex:form>
+    
+
+
+</apex:page>

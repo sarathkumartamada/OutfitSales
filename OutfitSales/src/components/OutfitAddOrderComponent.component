@@ -1,0 +1,65 @@
+<apex:component controller="OutfitListWithTabcontroller" allowDML="true">
+
+
+
+      <script type="text/javascript">
+           $(function() {
+                    $( "#tabb" ).tabs();
+            }); 
+            $(document).ready(function() {
+                $('#query').dataTable({
+                "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],"order": [[ 7, "desc" ]]   
+                
+              }); 
+              });
+       
+     </script>        
+       <div id="tabb">
+                <ul>
+                    <li><a href="#tabs1"> History </a></li>
+                    <li><a href="#tabs2"> My Cart </a></li>
+                </ul>
+            
+             <div id="tabs1" class="panel panel-info">
+                    <div class="panel panel-info">
+                        <div class="panel-heading" align="center"> <h2> History </h2> </div>
+                    </div> 
+            </div>
+            
+            <div id="tabs2" class="panel panel-info">
+                <div class="panel panel-info"></div>
+                
+                  <table id="query" >  
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Product Code</th>
+                                        <th>Description</th>
+                                        <th>Preview</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <apex:repeat value="{!selectedList}" var="Newpro" id="output" >
+                                        <tr>
+                                            <td>{!Newpro.Name}</td>
+                                            <td>{!Newpro.ProductCode}</td>
+                                            <td>{!Newpro.Description}</td>
+                                                                               <td>
+                                                 <apex:repeat >
+                                                    <apex:image url="/servlet/servlet.FileDownload?file={!Newpro.Id}"> View </apex:image>
+                                                 </apex:repeat>
+                                            </td>
+                                                                     
+                                            
+                                        </tr>
+                                    </apex:repeat>
+                                    
+                                </tbody>
+                               
+                    </table>
+                
+                      
+            </div>
+      </div>
+</apex:component>

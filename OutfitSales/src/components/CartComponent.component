@@ -1,0 +1,35 @@
+<apex:component controller="OutfitListWithTabcontroller" allowDML="true">
+  
+   <apex:form >
+        <apex:pageBlock >
+           
+           
+            
+            <apex:pageBlockTable value="{!ProductList}" var="pro" >
+                <apex:column headerValue="select">
+                    <apex:inputCheckbox value="{!pro.CheckBox}">
+                        
+                        <apex:param name="schId" value="{!pro.pr.id}"/>
+                        <apex:param name="checkvalue" value="{!pro.CheckBox}"/>
+                       
+                     </apex:inputCheckbox>
+                </apex:column> 
+                <apex:column value="{!pro.pr.Name}"/>
+                <apex:column value="{!pro.pr.ProductCode}"/>
+                <apex:column value="{!pro.pr.Family}"/>
+                <apex:column headerValue="Preview" >
+                        <apex:commandLink value="SHOW" onclick="window.open('apex/Previewproducts?id={!pro.pr.Id}', width='400', height='300');"/>
+                </apex:column>                      
+
+            </apex:pageBlockTable>
+          
+            <apex:pageBlockButtons >
+                   <apex:commandButton value="SaveOrder" action="{!addRecord}" reRender="output" />
+                   <apex:commandButton value="Remove From Cart" action="{!RemovefromCart}" />
+            </apex:pageBlockButtons>   
+      </apex:pageBlock>
+        
+     
+    </apex:form>
+    
+</apex:component>

@@ -1,0 +1,63 @@
+<apex:component controller="OutfitListWithTabcontroller" allowDML="true">
+ <apex:form >  
+   <apex:pageblock >
+     
+         <apex:pageBlockTable value="{!Outfits}" var="of">
+             <apex:column value="{!of.name}"/>
+             <apex:column value="{!of.WORK_STYLE__c}"/>
+             <apex:column value="{!of.EVENING_STYLE__c}"/>
+             <apex:column value="{!of.SHIRT_FIT__c}"/>
+             <apex:column value="{!of.TROUSERS_FIT__c}"/>
+             <apex:column value="{!of.BRAND__c}"/>
+             <apex:column value="{!of.SIZES__c}"/>
+             <apex:column headerValue="Suggestion">
+                  <apex:commandLink action="{!OutfitProducts}" value="View" reRender="productObject">
+                        <apex:param name="ofid" assignTo="{!selectedOutfitId}" value="{!of.Id}"></apex:param>
+                        <apex:param name="oname" assignTo="{!selectedOutfitName}" value="{!of.Name}"></apex:param>
+                  </apex:commandLink> 
+             </apex:column>
+        </apex:pageBlockTable>
+         
+    </apex:pageblock>
+  </apex:form>
+  
+  <apex:form id="productObject" >  
+      <div class="panel-heading">Suggested Products For Selected Outfit is {!selectedOutfitName}</div>
+   <apex:pageblock >
+     
+         <apex:pageBlockTable value="{!products}" var="pro" >
+            
+             <apex:column >
+                 <apex:facet name="header">Name</apex:facet>
+                 {!pro.Name}
+             </apex:column>
+             <apex:column >
+                 <apex:facet name="header">ProductCode</apex:facet>
+                 {!pro.ProductCode}
+             </apex:column>
+             <apex:column >
+                 <apex:facet name="header">Description</apex:facet>
+                 {!pro.Description}
+             </apex:column>
+             <apex:column >
+                 <apex:facet name="header">Stock</apex:facet>
+                 {!pro.Stock__c}
+             </apex:column>
+             <apex:column >
+                 <apex:facet name="header">Unit Price</apex:facet>
+                 {!IF(pro.PricebookEntries.empty,'--',pro.PricebookEntries[0].UnitPrice)}
+             </apex:column>
+             <apex:column >
+                   <apex:commandLink value="SHOW" onclick="window.open('apex/Previewproducts?id={!pro.Id}', width='400', height='300');"/>
+             </apex:column>
+             
+             <apex:column >
+                <apex:commandLink action="{!addToCart}" value="Add To Cart" styleClass="btn">
+                      <apex:param name="oid" value="{!pro.Outfit__c}"></apex:param>
+                      <apex:param name="pid" value="{!pro.Id}"></apex:param>
+                </apex:commandLink>
+             </apex:column>                        
+           </apex:pageblocktable>  
+       </apex:pageblock>      
+   </apex:form>          
+</apex:component>
